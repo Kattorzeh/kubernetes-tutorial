@@ -3,11 +3,15 @@
 
 <h3>DOCKER</h3>
 
-1) docker build -t <IMAGE_NAME> <PATH>
-	-> docker images
-2) docker run --name <CONTAINER_NAME> -p 8080:8080 -d <IMAGE_NAME>
-	-> docker ps
+1) docker build -t <IMAGE_NAME> <IMG_PATH> || docker images
+2) docker run --name <CONTAINER_NAME> -p 8080:8080 -d <IMAGE_NAME> || docker ps
 3) docker inspect <CONTAINER_NAME> | docker exec -it <CONTAINER_NAME> bash
+
+<h3>DOCKER HUB</h3>
+
+1) docker build -t <IMAGE_NAME> <IMG_PATH> 
+2) docker tag <IMAGE_NAME> <DOCKER_HUB_ID/IMAGE_NAME>
+3) docker push <DOCKER_HUB_ID/IMAGE_NAME>
 
 <h3>DOCKER CONATAINER LOGS</h3>
 
