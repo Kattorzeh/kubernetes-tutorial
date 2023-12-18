@@ -3,13 +3,13 @@
 
 <h3>DOCKER</h3>
 
-1) docker build -t <IMAGE_NAME> <IMG_PATH> || docker images
+1) docker build -t <IMAGE_NAME> <DOCKERFILE_PATH> || docker images
 2) docker run --name <CONTAINER_NAME> -p 8080:8080 -d <IMAGE_NAME> || docker ps
 3) docker inspect <CONTAINER_NAME> | docker exec -it <CONTAINER_NAME> bash
 
 <h3>DOCKER HUB</h3>
 
-1) docker build -t <IMAGE_NAME> <IMG_PATH> 
+1) docker build -t <IMAGE_NAME> <DOCKERFILE_PATH> 
 2) docker tag <IMAGE_NAME> <DOCKER_HUB_ID/IMAGE_NAME>
 3) docker push <DOCKER_HUB_ID/IMAGE_NAME>
 
@@ -58,6 +58,13 @@
 3) Contain a certain key and value -> kubectl get <RESOURCE> -l <CERTAIN_KEY>=<VALUE>
 4) Others: <KEY!=VALUE> | <KEY> in (<VALUE1,VALUE2>) | <KEY> notin (<VALUE1,VALUE2>)
 
+<h3>REPLICA SET LABELS SELECTORS</h3>
+
+1) Label value must match specific value -> In
+2) Label value must not match specific value -> NotIn
+3) Label with specific key -> Exists
+4) Label with no specific ket -> DoesNotExist
+
 <h3>ANNOTATIONS</h3>
 
 kubectl annotate <RESOURCE> <RESOURCE_NAME> <ANOTATION>="<VALUE>"
@@ -70,3 +77,16 @@ kubectl annotate <RESOURCE> <RESOURCE_NAME> <ANOTATION>="<VALUE>"
 2) kubectl delete ns <NAMESPACE_NAME>
 Add resources: kubectl create -f <POD.yaml> -n <NAMESPACE_NAME>
 Change Namespace: kubectl config set-context $(kubectl config current-context) --namespace <NAMESPACE_NAME>
+
+<h3>REPLICATION CONTROLLER</h3>
+
+1) kubectl create -f <REPLICATION_CONTROLLER.yaml>
+2) kubectl edit rc <REPLICATION_CONTROLLER_NAME>
+2) kubectl get rc <REPLICATION_CONTROLLER_NAME> -o yaml > <REPLICATION_CONTROLLER.yaml> | #edit text | kubectl apply -f <REPLICATION_CONTROLLER.yaml>
+3) kubectl scale <REPLICATION_CONTROLLER_NAME> --replicas=X
+4) kubectl delete rc <REPLICATION_CONTROLLER_NAME> 
+4) kubectl delete rc <REPLICATION_CONTROLLER_NAME> --cascade=false
+
+<h3>REPLICA SET</h3>
+
+1) kubectl create -f <REPLICA_SET.yaml>

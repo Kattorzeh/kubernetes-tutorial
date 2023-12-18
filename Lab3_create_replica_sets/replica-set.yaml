@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: lab3-rs
+spec:
+  replicas: 3
+  selector:
+    matchExpressions:
+      - key: app
+        operator: In
+        values:
+          - kubia-scope
+  template:
+    metadata:
+      labels:
+        app: kubia-scope
+    spec:
+      containers:
+      - name: kubia-by-rs
+        image: kattorzeh/kubia

@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-liveness-probe
+spec:
+  containers:
+  - image: kattorzeh/kubia-unhealthy
+    name: bad-kubia
+    # Create a GET HTTP Liveness Probe
+    livenessProbe:
+      httpGet:
+        path: /
+        port: 8080
+      # Customize Liveness Probe params
+      initialDelaySeconds: 30  # Adjust the initial delay before the first probe
+      timeoutSeconds: 5  # Adjust the timeout (time for the container to respond) for each probe
+      periodSeconds: 10  # Adjust the period between probes
+      failureThreshold: 3  # Adjust the number of consecutive failures before considering the container unhealthy

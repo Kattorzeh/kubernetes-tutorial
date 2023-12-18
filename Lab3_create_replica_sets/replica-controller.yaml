@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: lab3-rc
+spec:
+  # replica count (desired number of pods that should be running)
+  replicas: 3
+  # determines what pods are under the RC scope
+  selector:
+    app: kubia-scope
+  # RC template for create new pods
+  template:
+    metadata:
+      labels:
+        app: kubia-scope
+    spec:
+      containers:
+      - name: kubia-by-rc
+        image: kattorzeh/kubia
+        ports:
+        - containerPort: 8080
